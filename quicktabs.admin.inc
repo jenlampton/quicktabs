@@ -511,7 +511,7 @@ function quicktabs_get_blocks() {
     // hardcoding the module as block for now.
     // Deltas are the same as the custom block name.
     $key = 'block' . '_delta_' . $config->get('delta');
-    $blocksarray[$key] = $config->get('title') . ' (Block)';
+    $blocksarray[$key] = $config->get('info') . ' (Block)';
   }
   return $blocksarray;
 }
