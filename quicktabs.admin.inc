@@ -311,6 +311,9 @@ function _quicktabs_form(array $tab, $qt) {
       }
     }
     $tabtypes[$name] = $name;
+    if ($tabtypes[$name] == 'block') {
+      $tabtypes[$name] = 'custom block';
+    }
     $content_provider = quick_content_factory($name, $tab);
     if (is_object($content_provider)) {
       $form = array_merge_recursive($form, $content_provider->optionsForm($delta, $qt));
