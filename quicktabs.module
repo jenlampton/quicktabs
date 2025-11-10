@@ -740,14 +740,22 @@ function theme_qt_quicktabs_tabset($vars) {
       $tab['#attributes'] = array('role' => 'tab');
       $tab['#attributes']['aria-selected'] = 'false';
 
+      $item['role'] = 'presentation';
       $item['class'] = array(backdrop_html_class($tab['#title']));
       if ($key == $vars['tabset']['#options']['active']) {
         $item['class'][] = 'active';
         $item['aria-selected'] = 'true';
         $tab['#attributes']['aria-selected'] = 'true';
       }
-      $item['role'] = 'presentation';
-      $item['data'] = backdrop_render($tab);
+
+      // Use a button instead of a link.
+      $button_attributes = $tab['#attributes'];
+      $button_attributes['data-qt'] = $tab['#options']['fragment'];
+      $button  = '<button' . backdrop_attributes($button_attributes) . '>';
+      $button .= t($tab['#title']);
+      $button .= '</button>';
+
+      $item['data'] = $button;
       $variables['items'][] = $item;
     }
   }
